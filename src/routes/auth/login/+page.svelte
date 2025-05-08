@@ -28,7 +28,7 @@
 		<button class="w-full bg-zinc-700 p-4 mt-6 rounded-lg hover:bg-zinc-600 transition ease-in-out duration-200">Login</button>
 	</form>
 
-	<p>Don't have an account? <a href="/auth/register">Register</a></p>
+	<p class="text-center">Don't have an account? <a href="/auth/register">Register</a></p>
 
 	{#if form?.user}
 		<p class="success">
