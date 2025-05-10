@@ -8,6 +8,21 @@ them particularly pleasing aesthetically, and there is also the downside of the 
 Because of this, I wanted to create my own solution that is fast, secure and easy to use, but also elegant and beautiful.
 
 ## TODO
-- [ ] Auth
-- [ ] Create team
-- [ ] Trello-style drag n' drop planner
+### Authentication
+- [ ] Email verify
+- [ ] Ensure logout works in prod
+- [ ] figure out what "secure" in cookies does
+- [ ] Oauth via discord, google and github
+### Dashboard
+- [ ] Dashboard design
+- [ ] Display projects
+### Projects
+- [ ] Project creation
+- [ ] Add other users to project
+- [ ] Create markdown note files in projects
+- [ ] Create planners in projects
+### Planner
+- [ ] Column creation
+- [ ] Task creation
+- [ ] Task-note linking
+- [ ] Live collaboration
