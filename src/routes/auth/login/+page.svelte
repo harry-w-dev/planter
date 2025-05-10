@@ -30,14 +30,20 @@
 			<p>Please enter your credentials to login.</p>
 		</div>
 
-		<form class="flex flex-col gap-6" method="POST" autocomplete="off" use:enhance>
+		<form novalidate class="flex flex-col gap-6" method="POST" autocomplete="off" use:enhance>
 			<div class="flex flex-col items-start gap-1">
-				<label for="email_input">Email</label>
-				<input class="w-full" type="email" id="email_input" name="email" placeholder="email@example.com" value={form?.email ?? ""} />
+				<div class="flex flex-row justify-between w-full">
+					<label for="password_input">Email</label>
+					<span class="text-red-400">{form?.error === "email" ? form.message : ""}</span>
+				</div>
+				<input class="w-full {form?.error === "email" ? "outline-2 outline-offset-1 outline-red-400" : ""}" type="email" id="email_input" name="email" placeholder="email@example.com" value={form?.email ?? ""} />
 			</div>
 			<div class="flex flex-col items-start gap-1">
-				<label for="password_input">Password</label>
-				<input class="w-full" type="password" id="password_input" name="password" placeholder="SuperStrongPassword" />
+				<div class="flex flex-row justify-between w-full">
+					<label for="password_input">Password</label>
+					<span class="text-red-400">{form?.error === "password" ? form.message : ""}</span>
+				</div>
+				<input class="w-full {form?.error === "password" ? "outline-2 outline-offset-2 outline-red-400" : ""}" type="password" id="password_input" name="password" placeholder="SuperStrongPassword" />
 			</div>
 			<button class="w-full bg-zinc-700 p-4 mt-6 rounded-lg hover:bg-zinc-600 transition ease-in-out duration-200">Login</button>
 		</form>
@@ -48,11 +54,5 @@
 				<div class="bg-zinc-200 h-[2px] w-0 group-hover:w-full transition-all duration-500 cursor-pointer"></div>
 			</button>
 		</div>
-
-		{#if form?.error}
-			<p class="error">
-				{form.error}
-			</p>
-		{/if}
 	</div>
 </div>

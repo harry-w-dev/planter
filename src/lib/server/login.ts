@@ -8,11 +8,11 @@ import { User_Model } from "./model";
 export async function login_user(
 	email: string,
 	password: string
-): Promise<{ error: string } | { token: string; user: user }> {
+): Promise<{ error: string; message?: string } | { token: string; user: user }> {
 	const user = await get_user(email, password);
 
 	if ("error" in user) {
-		return { error: user.error };
+		return { error: user.error, message: user.message };
 	}
 
 	const token = jwt.sign({ id: user.id }, SECRET_JWT_KEY);
@@ -23,23 +23,23 @@ export async function login_user(
 async function get_user(
 	email: string,
 	password: string
-): Promise<{ error: string } | user> {
+): Promise<{ error: string; message?: string } | user> {
 	if (!email) {
-		return { error: "Email is required." };
+		return { error: "email", message: "You must enter an email." };
 	}
 
 	if (!email.match(email_regexp)) {
-		return { error: "Please enter a valid email." };
+		return { error: "email", message: "Email is not valid." };
 	}
 
 	const user = await User_Model.findOne({ email });
 
 	if (!user) {
-		return { error: "Email could not be found." };
+		return { error: "email", message: "Email not found." };
 	}
 
 	if (!password) {
-		return { error: "Password is required." };
+		return { error: "password", message: "You must enter a password." };
 	}
 
 	const password_is_correct = await bcrypt.compare(
@@ -48,7 +48,7 @@ async function get_user(
 	);
 
 	if (!password_is_correct) {
-		return { error: "Password is not correct." };
+		return { error: "password", message: "Password is incorrect." };
 	}
 
 	const id = user._id.toString();
