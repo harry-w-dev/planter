@@ -14,10 +14,10 @@ export const actions: Actions = {
 
 		const user = { email, name };
 
-		const { error } = await register_user(email, password, name);
+		const { error, message } = await register_user(email, password, name);
 
 		if (error) {
-			return fail(400, { user, error });
+			return fail(400, { user, error, message });
 		} else {
 			const message = "Registration successful! You can now login.";
 			return { user, message };

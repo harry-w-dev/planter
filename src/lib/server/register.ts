@@ -7,23 +7,23 @@ export async function register_user(
 	email: string,
 	password: string,
 	name: string
-): Promise<{ error: string }> {
+): Promise<{ error: string, message?: string }> {
 	const email_error = await verify_email(email);
 
 	if (email_error) {
-		return { error: email_error };
+		return { error: "email", message: email_error };
 	}
 
 	const password_error = verify_password(password);
 
 	if (password_error) {
-		return { error: password_error };
+		return { error: "password", message: password_error };
 	}
 
 	const name_error = verify_name(name);
 
 	if (name_error) {
-		return { error: name_error };
+		return { error: "name", message: name_error };
 	}
 
 	const salt_rounds = 10;
@@ -39,7 +39,7 @@ export async function register_user(
 		await user.save();
 		return { error: "" };
 	} catch (err) {
-		return { error: err?.toString() as string };
+		return { error: "other", message: err?.toString() as string };
 	}
 }
 
