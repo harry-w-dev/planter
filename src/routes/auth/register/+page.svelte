@@ -1,8 +1,22 @@
 <script lang="ts">
 	import { enhance } from "$app/forms";
+    import { goto } from "$app/navigation";
 	import type { ActionData } from "./$types";
 
-	export let form: ActionData;
+	let transitionPage = $state(true);
+
+	const { form }: { form: ActionData } = $props();
+
+	function loginPage() {
+		transitionPage = true;
+		setTimeout(() => {
+			goto("/auth/login", { replaceState: true });
+		}, 200);
+	}
+
+	setTimeout(() => {
+		transitionPage = false;
+	}, 200);
 </script>
 
 <svelte:head>
@@ -39,14 +53,12 @@
 	<button>Register</button>
 </form>
 
-{#if form?.message}
-	<p class="success">
-		{form.message}
-	</p>
-{/if}
-
-{#if form?.error}
-	<p class="error">
-		{form.error}
-	</p>
-{/if}
+<div class="flex gap-1 justify-center">
+	<p class="">Already registered?</p>
+	<button type="button" class="text-zinc-200 hover:text-zinc-50 transition ease-in-out group cursor-pointer" onclick={loginPage} aria-label="Register">
+		Login
+		<div class="bg-zinc-200 h-[2px] w-0 group-hover:w-full transition-all duration-500 cursor-pointer"></div>
+	</button>
+</div>
+</div>
+</div>

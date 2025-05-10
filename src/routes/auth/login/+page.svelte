@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from "$app/forms";
+	import { goto } from "$app/navigation";
 	import type { ActionData } from "./$types";
 
 	let transitionPage = $state(true);
@@ -9,7 +10,7 @@
 	function registerPage() {
 		transitionPage = true;
 		setTimeout(() => {
-			window.location.href = "/auth/register";
+			goto("/auth/register", { replaceState: true });
 		}, 200);
 	}
 
