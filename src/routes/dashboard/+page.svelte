@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { PageData } from "./$types";
+    import Button from "$lib/components/button.svelte";
 
 	export let data: PageData;
 </script>
@@ -19,3 +20,6 @@
     <div class="flex flex-col gap-2"></div>
 </div>
 
+<form action="/auth/logout" method="POST" class="logout-form">
+	<Button color="warning" class="w-full">Log out</Button>
+</form>
