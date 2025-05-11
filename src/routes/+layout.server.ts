@@ -1,6 +1,6 @@
 import { error } from "@sveltejs/kit";
 import type { LayoutServerLoad } from "./$types";
-import { connect_to_db } from "$lib/server/db";
+import { connect_to_db } from "$lib/server/database/db";
 import crypto from "crypto";
 
 export const load: LayoutServerLoad = async (event) => {
