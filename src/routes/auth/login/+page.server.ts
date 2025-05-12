@@ -1,6 +1,6 @@
 import { redirect, fail } from "@sveltejs/kit";
 import type { Actions } from "./$types";
-import { login_user } from "$lib/server/login";
+import { login_user } from "$lib/server/auth/login";
 import { cookie_options } from "$lib/server/utils";
 
 export const actions: Actions = {
