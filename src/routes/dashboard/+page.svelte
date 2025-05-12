@@ -1,6 +1,9 @@
 <script lang="ts">
 	import type { PageData } from "./$types";
+    import { enhance } from "$app/forms";
     import Button from "$lib/components/button.svelte";
+    import Card from "$lib/components/card.svelte";
+    import Input from "$lib/components/input.svelte";
 
 	export let data: PageData;
 </script>
@@ -22,4 +25,19 @@
 
 <form action="/auth/logout" method="POST" class="logout-form">
 	<Button color="warning" class="w-full">Log out</Button>
+</form>
+
+<div class="flex flex-col gap-2">
+    {#each data.projects as project}
+        <Card>{project.name}</Card>
+    {/each}
+</div>
+<form  method="POST" autocomplete="off" use:enhance>
+    <Input
+        label="Project name"
+        type="text"
+        id="project_name_input"
+        name="project_name"
+    />
+    <Button>Create project</Button>
 </form>
