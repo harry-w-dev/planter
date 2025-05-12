@@ -1,5 +1,5 @@
 <script lang="ts">
-    let { color, children, class: className } = $props();
+    let { color = null, children = null, class: className = null } = $props();
 </script>
 
 <style>
