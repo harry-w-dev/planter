@@ -2,8 +2,8 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 import { SECRET_JWT_KEY } from "$env/static/private";
-import { email_regexp } from "./utils";
-import { User_Model } from "./database/model";
+import { email_regexp } from "$lib/server/utils";
+import { User_Model } from "$lib/server/database/model";
 
 export async function login_user(
 	email: string,
