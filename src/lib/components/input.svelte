@@ -16,6 +16,7 @@
 <style>
     .input {
         background-color: var(--color-base-100);
+        color: var(--color-base-content);
         outline: 1px solid color-mix(in oklab,var(--color-base-content)20%,#0000);
         padding: calc(var(--spacing) * 2);
         border-radius: var(--radius-lg);
